@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lobby – Lotería Mexicana</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="lobby-layout">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-brand"><span>🎴</span> Lotería Mexicana</div>
+    <div class="navbar-user">
+      <span>👤 <strong id="nav-username"></strong></span>
+      <button id="btn-logout" class="btn btn-outline btn-sm">Salir</button>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main class="lobby-main">
+    <div class="lobby-header">
+      <h2>🎲 Salas disponibles</h2>
+      <button id="btn-open-modal" class="btn btn-gold">+ Crear sala</button>
+    </div>
+
+    <div id="rooms-grid" class="rooms-grid">
+      <div class="empty-state">
+        <span class="emoji">⏳</span>
+        Cargando salas...
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal crear sala -->
+  <div id="modal-create" class="modal-overlay hidden">
+    <div class="modal">
+      <h3>🎴 Nueva sala</h3>
+      <form id="form-create-room" novalidate>
+        <div class="form-group">
+          <label for="room-name-input">Nombre de la sala</label>
+          <input type="text" id="room-name-input" class="input"
+                 placeholder="Ej: Sala de los campeones" maxlength="100" required>
+        </div>
+        <div class="form-group">
+          <label for="room-draw-speed">Velocidad de canto (segundos por carta)</label>
+          <input type="number" id="room-draw-speed" class="input" value="5" min="2" max="30">
+        </div>
+        <div class="form-group">
+          <label for="room-max-players">Máximo de jugadores</label>
+          <input type="number" id="room-max-players" class="input" value="10" min="1" max="20">
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="btn-cancel-modal" class="btn btn-outline">Cancelar</button>
+          <button type="submit" class="btn btn-gold">Crear y entrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+  <script src="/js/api.js"></script>
+  <script src="/js/lobby.js"></script>
+</body>
+</html>

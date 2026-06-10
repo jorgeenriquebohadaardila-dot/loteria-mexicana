@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partida – Lotería Mexicana</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="game-layout">
+
+  <!-- Header -->
+  <header class="game-header">
+    <div style="display:flex;align-items:center;gap:.8rem">
+      <button id="btn-back" class="btn btn-outline btn-sm">← Lobby</button>
+      <h1 id="room-title">Sala de juego</h1>
+    </div>
+    <div id="game-status" class="game-status status-waiting">
+      <span class="status-dot"></span> Esperando jugadores...
+    </div>
+    <div style="display:flex;align-items:center;gap:.6rem">
+      <span id="countdown-display" style="font-size:1.1rem;font-weight:700;color:var(--gold);min-width:3ch;text-align:right"></span>
+    </div>
+  </header>
+
+  <!-- Layout principal 3 columnas -->
+  <div class="game-main">
+
+    <!-- ── Col izquierda: historial de cartas ── -->
+    <aside class="panel-history">
+      <h3>Cantadas</h3>
+      <div id="history-grid"></div>
+    </aside>
+
+    <!-- ── Col central: carta actual + tablero ── -->
+    <section class="panel-center">
+
+      <!-- Carta actual -->
+      <div class="current-card-wrap">
+        <label>Carta actual</label>
+        <div id="current-card">
+          <span class="c-placeholder">Esperando...</span>
+        </div>
+        <span id="remaining-count" style="font-size:.78rem;color:var(--text-muted)"></span>
+      </div>
+
+      <!-- Tablero 4×4 -->
+      <div class="board-section">
+        <h3>Tu tablero – haz clic para marcar</h3>
+        <div id="board-grid"></div>
+      </div>
+
+      <!-- Botones de acción -->
+      <div class="action-area">
+        <button id="btn-start" class="btn btn-green btn-lg hidden">
+          ▶ Iniciar partida
+        </button>
+        <button id="btn-claim" class="btn btn-loteria hidden">
+          ¡LOTERÍA!
+        </button>
+        <p style="font-size:.75rem;color:var(--text-muted);text-align:center;max-width:280px">
+          Marca las cartas de tu tablero que hayan sido cantadas y presiona ¡LOTERÍA! cuando tengas un patrón ganador.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- ── Col derecha: jugadores ── -->
+    <aside class="panel-players">
+      <h3>Jugadores</h3>
+      <div id="players-list"></div>
+
+      <div style="margin-top:auto;padding-top:.8rem;font-size:.75rem;color:var(--text-muted)">
+        <p>🏆 <strong>Patrones ganadores:</strong></p>
+        <p>• Cualquier fila (4 en línea)</p>
+        <p>• Cualquier columna</p>
+        <p>• Diagonal</p>
+        <p>• Cuatro esquinas</p>
+        <p>• Tablero completo</p>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Overlay ganador -->
+  <div id="win-overlay" class="hidden">
+    <div class="win-box">
+      <!-- Se llena dinámicamente -->
+    </div>
+  </div>
+
+  <div id="toast"></div>
+  <script src="/js/api.js"></script>
+  <script src="/js/game.js"></script>
+</body>
+</html>
